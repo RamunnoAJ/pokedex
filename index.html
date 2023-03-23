@@ -8,12 +8,31 @@
   <title>Pokedex</title>
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-  <h1>soy de color rojo</h1>
+  <header class="py-5">
+    <nav class="nav container">
+      <div class="nav__icons">
+        <a href="#" class="nav__image">
+          <img src="assets/logo.png" alt="Pokemon logo">
+        </a>
+        <button class="btn-menu" type="button" id="btn-menu">
+          <i class="btn-menu__bars" aria-hidden="true"></i>
+          <span class="visually-hidden">Menu</span>
+        </button>
+      </div>
+      <ul class="nav__links uppercase fw-bold" id="nav-links">
+        <li>Pokemon</li>
+        <li>Habilities</li>
+      </ul>
+    </nav>
+  </header>
 
+  <script src="src/menu.js"></script>
   <script src="src/index.js" type="module"></script>
 </body>
 
