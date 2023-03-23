@@ -1,0 +1,79 @@
+@for $i from 1 through 64 {
+  .m-#{$i} {
+    margin: (0.25rem * $i);
+  }
+  .mx-#{$i} {
+    margin-inline: (0.25rem * $i);
+  }
+  .my-#{$i} {
+    margin-block: (0.25rem * $i);
+  }
+
+  .p-#{$i} {
+    padding: (0.25rem * $i);
+  }
+  .px-#{$i} {
+    padding-inline: (0.25rem * $i);
+  }
+  .py-#{$i} {
+    padding-block: (0.25rem * $i);
+  }
+
+  .mt-#{$i} {
+    margin-top: (0.25rem * $i);
+  }
+
+  .mb-#{$i} {
+    margin-bottom: (0.25rem * $i);
+  }
+
+  .ml-#{$i} {
+    margin-left: (0.25rem * $i);
+  }
+
+  .mr-#{$i} {
+    margin-right: (0.25rem * $i);
+  }
+
+  .pt-#{$i} {
+    padding-top: (0.25rem * $i);
+  }
+
+  .pb-#{$i} {
+    padding-bottom: (0.25rem * $i);
+  }
+
+  .pl-#{$i} {
+    padding-left: (0.25rem * $i);
+  }
+
+  .pr-#{$i} {
+    padding-right: (0.25rem * $i);
+  }
+}
+
+.fw-bold {
+  font-weight: $fw-bold;
+}
+
+.visually-hidden {
+  display: none !important;
+}
+
+.visually-hidden-mobile {
+  display: none;
+}
+
+@media (min-width: 45rem) {
+  .visually-hidden-desktop {
+    display: none;
+  }
+
+  .visually-hidden-mobile {
+    display: block;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

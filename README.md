@@ -1,2 +1,1 @@
-# pokedex
- 
+# JAVASCRIPT POKEDEX

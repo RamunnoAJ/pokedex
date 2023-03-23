@@ -1,0 +1,43 @@
+// ? COLORS
+
+$white: #fff;
+$black: #000;
+$grey: #7b7b7b76;
+$dark-grey: #5b5b5b;
+
+// ? FONTS
+
+$ff-primary: 'Lato', sans-serif;
+
+$ff-body: 'Lato', sans-serif;
+$ff-heading: 'Lato', sans-serif;
+
+$fw-regular: 400;
+$fw-bold: 700;
+
+:root {
+  --fs-200: 0.75rem;
+  --fs-300: 0.875rem;
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-600: 1.5rem;
+  --fs-700: 2rem;
+
+  --fs-body: var(--fs-300);
+  --fs-nav: var(--fs-400);
+  --fs-button: var(--fs-400);
+  --fs-primary-heading: var(--fs-700);
+  --fs-secondary-heading: var(--fs-600);
+
+  @media (min-width: 48rem) {
+    --fs-200: 0.875rem;
+    --fs-300: 1rem;
+    --fs-400: 1.5rem;
+    --fs-500: 2rem;
+    --fs-600: 2.5rem;
+    --fs-700: 3.5rem;
+
+    --fs-button: var(--fs-300);
+    --fs-nav: var(--fs-300);
+  }
+}
