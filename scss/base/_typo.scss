@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lato:wght@400;700&display=swap');
 
 body {
   font-size: var(--fs-body);
@@ -12,4 +12,5 @@ h4,
 h5,
 h6 {
   font-family: $ff-heading;
+  margin: 0;
 }

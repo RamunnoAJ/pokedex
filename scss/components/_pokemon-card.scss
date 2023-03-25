@@ -1,0 +1,71 @@
+.pokemon-card {
+  @include flex(column, center, stretch);
+  padding: 1rem;
+  gap: 1rem;
+  width: 95%;
+  max-width: 320px;
+
+  background-color: $primary-color;
+  border-radius: 0.75rem;
+  box-shadow: 7px 10px 34px 0px rgba(0, 0, 0, 0.1);
+
+  .pokemon-card__image-container {
+    @include flex(column, center, center);
+    .pokemon-card__image {
+      max-width: 250px;
+    }
+  }
+
+  .pokemon-card__stats ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .pokemon-card__type > *:nth-child(2) {
+    margin-left: 0.5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .pokemon-card {
+    @include flex(row-reverse, center, center);
+    max-width: 520px;
+    padding: 3rem;
+  }
+}
+
+$colors: (
+  'normal': #b7b7a9,
+  'fire': #ff6144,
+  'water': #52a9ff,
+  'electric': #ffd452,
+  'grass': #8bd36f,
+  'ice': #7dd4ff,
+  'fighting': #c56f61,
+  'poison': #b76fa9,
+  'ground': #e2c56f,
+  'flying': #99a8fd,
+  'psychic': #ff6fa9,
+  'bug': #b7c544,
+  'rock': #c5b77d,
+  'ghost': #7d7dc5,
+  'dragon': #8a7cee,
+  'dark': #8c6f61,
+  'steel': #b7b7c5,
+  'fairy': #f1a9f1,
+);
+
+@each $type, $value in $colors {
+  .type-#{$type} {
+    text-transform: uppercase;
+    font-size: var(--fs-200);
+    padding: 0.3rem 0.625rem;
+    border-radius: 0.5rem;
+    font-family: 'Fira Sans', sans-serif;
+    background-color: $value;
+  }
+}

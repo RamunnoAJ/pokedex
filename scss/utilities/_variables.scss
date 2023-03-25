@@ -2,6 +2,7 @@
 
 $primary-color: #ef5350;
 $secondary-color: #1276df;
+$secondary-color-light: #1275df70;
 
 $white: #fff;
 $black: #000;
@@ -18,7 +19,7 @@ $fw-regular: 400;
 $fw-bold: 700;
 
 :root {
-  --fs-200: 0.75rem;
+  --fs-200: 0.5rem;
   --fs-300: 0.875rem;
   --fs-400: 1rem;
   --fs-500: 1.25rem;
@@ -32,7 +33,7 @@ $fw-bold: 700;
   --fs-secondary-heading: var(--fs-600);
 
   @media (min-width: 48rem) {
-    --fs-200: 0.875rem;
+    --fs-200: 0.625rem;
     --fs-300: 1rem;
     --fs-400: 1.5rem;
     --fs-500: 2rem;
