@@ -1,13 +1,30 @@
+.pokemon-card__container {
+  display: grid;
+  place-content: center;
+  grid-template-columns: 320px;
+  width: 100%;
+}
+
 .pokemon-card {
   @include flex(column, center, stretch);
   padding: 1rem;
   gap: 1rem;
-  width: 95%;
-  max-width: 320px;
 
   background-color: $primary-color;
   border-radius: 0.75rem;
   box-shadow: 7px 10px 34px 0px rgba(0, 0, 0, 0.1);
+
+  .pokemon-card__title {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    margin-top: 1rem;
+  }
 
   .pokemon-card__image-container {
     @include flex(column, center, center);
@@ -33,8 +50,12 @@
 @media (min-width: 48rem) {
   .pokemon-card {
     @include flex(row-reverse, center, center);
-    max-width: 520px;
+    width: 100%;
     padding: 3rem;
+  }
+
+  .pokemon-card__container {
+    grid-template-columns: 600px;
   }
 }
 
