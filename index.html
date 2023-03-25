@@ -26,8 +26,8 @@
         </button>
       </div>
       <ul class="nav__links uppercase fw-bold" id="nav-links">
-        <li tabindex=0>Pokemon</li>
-        <li tabindex=0>Abilities</li>
+        <li tabindex=0 id="pokemon-list">Pokemon</li>
+        <li tabindex=0 id="abilities-list">Abilities</li>
       </ul>
     </nav>
   </header>
@@ -41,9 +41,12 @@
     </main>
 
 
-    <div class="pokemon-card mb-4">
-    </div>
+    <div class="pokemon-card__container">
+      <div class="pokemon-card mb-4">
+      </div>
 
+      <div class="ability-card"></div>
+    </div>
   </div>
 
   <script src="src/menu.js"></script>

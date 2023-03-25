@@ -3,6 +3,7 @@ import {
   capitalizeFirstLetter,
   convertDecimetersToMeters,
   convertHectogramsToPounds,
+  roundStringToThreeChars,
 } from './utils/functions.js'
 
 const API_URL = 'https://pokeapi.co/api/v2/'
@@ -10,9 +11,20 @@ const API_URL = 'https://pokeapi.co/api/v2/'
 const $list = document.querySelector('#list')
 const $listTitle = document.querySelector('#list-title')
 const $pokemonCard = document.querySelector('.pokemon-card')
+const $pokemonList = document.querySelector('#pokemon-list')
+const $abilitiesList = document.querySelector('#abilities-list')
+const $abilityCard = document.querySelector('.ability-card')
 
-renderPokemon()
-renderPokemonList()
+function initializePokemon() {
+  renderPokemon()
+  renderPokemonList()
+}
+
+initializePokemon()
+
+$pokemonList.addEventListener('click', () => {
+  initializePokemon()
+})
 
 async function renderPokemonList(URL = `${API_URL}pokemon`) {
   $list.innerHTML = ''
@@ -25,11 +37,11 @@ async function renderPokemonList(URL = `${API_URL}pokemon`) {
 
   pokemonList.forEach(pokemon => {
     const pokemonNumber = pokemon.url.split('/')[6]
-    let pokemonName = pokemon.name
+    const pokemonName = capitalizeFirstLetter(pokemon.name)
 
-    pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)
-
-    $list.innerHTML += `<li class='py-2 list__item'> <span class='fw-bold'>${pokemonNumber} - ${pokemonName}</span><button class='btn btn-details' id='pokemon-${pokemonNumber}'>Details</button></li>`
+    $list.innerHTML += `<li class='py-2 list__item'> <span class='fw-bold'>${roundStringToThreeChars(
+      pokemonNumber
+    )} - ${pokemonName}</span><button class='btn btn-details' id='pokemon-${pokemonNumber}'>Details</button></li>`
   })
 
   const buttonsDetails = document.querySelectorAll('.btn-details')
@@ -41,12 +53,20 @@ async function renderPokemonList(URL = `${API_URL}pokemon`) {
     })
   })
 
-  renderPaginationButtons(response.previous, response.next)
+  renderPaginationButtons(response.previous, response.next, renderPokemonList)
 }
 
-function renderPaginationButtons(prev, next) {
-  const FIRST_PAGE = `${API_URL}pokemon`
-  const LAST_PAGE = `${API_URL}pokemon?offset=1001`
+function renderPaginationButtons(
+  prev,
+  next,
+  renderFunction,
+  section = 'pokemon'
+) {
+  const offset = section === 'pokemon' ? 1000 : 280
+
+  const FIRST_PAGE = `${API_URL}${section}`
+  const LAST_PAGE_TO_RENDER = `${API_URL}${section}?offset=${offset}`
+  const LAST_PAGE = `${API_URL}${section}?offset=${offset + 20}`
 
   createPaginationButtons()
 
@@ -56,20 +76,20 @@ function renderPaginationButtons(prev, next) {
   const $btnLast = document.querySelector('#btn-last')
 
   $btnFirst.addEventListener('click', () => {
-    renderPokemonList(FIRST_PAGE)
+    renderFunction(FIRST_PAGE)
   })
   $btnLast.addEventListener('click', () => {
-    renderPokemonList(LAST_PAGE)
+    renderFunction(LAST_PAGE_TO_RENDER)
   })
 
   if (prev)
     $btnPrev.addEventListener('click', () => {
-      renderPokemonList(prev)
+      renderFunction(prev)
     })
 
-  if (next)
+  if (!next.includes(LAST_PAGE))
     $btnNext.addEventListener('click', () => {
-      renderPokemonList(next)
+      renderFunction(next)
     })
 }
 
@@ -86,7 +106,7 @@ function createPaginationButtons() {
 }
 
 async function renderPokemon(id = 1) {
-  $pokemonCard.innerHTML = ''
+  $abilityCard.innerHTML = ''
 
   const response = await fetchURL(`${API_URL}pokemon/${id}`)
   const {
@@ -159,4 +179,124 @@ function createPokemonFromFetch(response) {
   }
 
   return pokemon
+}
+
+// ? ABILITIES
+
+$abilitiesList.addEventListener('click', () => {
+  initializeAbilities()
+})
+
+function initializeAbilities() {
+  renderAbility()
+  renderAbilitiesList()
+}
+
+async function renderAbility(id = 1) {
+  const response = await fetchURL(`${API_URL}ability/${id}`)
+  const {
+    name,
+    pokemon,
+    id: abilityID,
+    effect_entries: effectEntries,
+  } = response
+
+  const filteredPokemon = pokemon.filter(pokemon => {
+    return pokemon.pokemon.url.split('/')[6] < 10000
+  })
+
+  showPokemonListForAbility(
+    { name, pokemon, abilityID, effectEntries },
+    filteredPokemon
+  )
+}
+
+async function renderAbilitiesList(URL = `${API_URL}ability`) {
+  $list.innerHTML = ''
+  $listTitle.textContent = "Abilities' list"
+
+  const response = await fetchURL(URL)
+  const abilitiesList = await response.results.filter(ability => {
+    return ability.url.split('/')[6] < 10000
+  })
+
+  abilitiesList.forEach(ability => {
+    const abilityNumber = ability.url.split('/')[6]
+    const abilityName = capitalizeFirstLetter(ability.name)
+
+    $list.innerHTML += `<li class='py-2 list__item'>
+    <span class='fw-bold'>
+    ${roundStringToThreeChars(abilityNumber)} - ${abilityName}
+    </span>
+    <button class='btn btn-ability' id='ability-${abilityNumber}'>
+    Details
+    </button>
+    </li>`
+  })
+
+  const buttonsAbility = document.querySelectorAll('.btn-ability')
+  buttonsAbility.forEach(button => {
+    const abilityID = button.id.split('-')[1]
+
+    button.addEventListener('click', () => {
+      renderAbility(abilityID)
+    })
+  })
+
+  renderPaginationButtons(
+    response.previous,
+    response.next,
+    renderAbilitiesList,
+    'ability'
+  )
+}
+
+function showPokemonListForAbility(
+  { abilityID, name, effectEntries },
+  filteredPokemon
+) {
+  $pokemonCard.innerHTML = `
+  <div>
+    <h2 class="pokemon-card__title">${abilityID} - ${capitalizeFirstLetter(
+    name
+  )}</h2>
+    <div>
+      ${effectEntries[1].effect}
+    </div>
+  </div>
+  `
+
+  $abilityCard.innerHTML = `
+  <h3 class='mb-1'>Pokemon with ${name}:</h3>
+  <ul class='ability__list'>
+    ${filteredPokemon
+      .map(pokemon => {
+        const pokemonName = capitalizeFirstLetter(pokemon.pokemon.name)
+        const pokemonID = pokemon.pokemon.url.split('/')[6]
+        const pokemonNumber = roundStringToThreeChars(pokemonID)
+        const pokemonImage =
+          pokemonNumber < 803
+            ? `https://www.pkparaiso.com/imagenes/pokedex/sm-icons/${pokemonNumber}.png`
+            : 'https://www.pkparaiso.com/skin/aplis/train.png'
+
+        return `<li role='button' class='py-1 fw-bold list__item list__item-ability' id='pokemon-${pokemonID}'>
+        <div>
+        <img src=${pokemonImage} width='32' />
+        <span>${pokemonName}</span>
+        </div>
+        <span># ${pokemonNumber}</span>
+        </li>`
+      })
+      .join('')}
+  </ul>
+  `
+
+  const abilitiesButtons = document.querySelectorAll('.list__item-ability')
+  abilitiesButtons.forEach(button => {
+    const id = button.id.split('-')[1]
+
+    button.addEventListener('click', () => {
+      renderPokemon(id)
+    })
+  })
 }

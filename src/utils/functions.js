@@ -12,3 +12,11 @@ export function convertDecimetersToMeters(decimeters) {
   const METER_CONVERT_RATE = 0.1
   return decimeters * METER_CONVERT_RATE
 }
+
+export function roundStringToThreeChars(string) {
+  for (let i = 0; string.length < 3; i++) {
+    string = '0' + string
+  }
+
+  return string
+}
