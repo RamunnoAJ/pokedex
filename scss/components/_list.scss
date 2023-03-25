@@ -1,0 +1,28 @@
+.list__container {
+  @include flex(column, center, stretch);
+  width: 320px;
+
+  .list__title {
+    margin-block: 1rem;
+    text-align: center;
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+
+    .list__item {
+      @include flex(row, space-between, center);
+      border-bottom: 1px solid $grey;
+    }
+
+    .list__item:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  .pagination {
+    @include flex(row, center, center);
+    gap: 0.25rem;
+  }
+}

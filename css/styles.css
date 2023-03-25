@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lato:wght@400;700&display=swap");
 :root {
-  --fs-200: 0.75rem;
+  --fs-200: 0.5rem;
   --fs-300: 0.875rem;
   --fs-400: 1rem;
   --fs-500: 1.25rem;
@@ -13,7 +13,7 @@
   --fs-secondary-heading: var(--fs-600); }
   @media (min-width: 48rem) {
     :root {
-      --fs-200: 0.875rem;
+      --fs-200: 0.625rem;
       --fs-300: 1rem;
       --fs-400: 1.5rem;
       --fs-500: 2rem;
@@ -336,7 +336,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato", sans-serif; }
+  font-family: "Lato", sans-serif;
+  margin: 0; }
 
 .m-1 {
   margin: 0.25rem; }
@@ -3100,6 +3101,227 @@ h6 {
   .btn-menu {
     display: none; } }
 
+.list__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 320px; }
+  .list__container .list__title {
+    margin-block: 1rem;
+    text-align: center; }
+  .list__container .list {
+    list-style: none;
+    padding: 0; }
+    .list__container .list .list__item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #7b7b7b76; }
+    .list__container .list .list__item:last-of-type {
+      border-bottom: none; }
+  .list__container .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem; }
+
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 1rem;
+  gap: 1rem;
+  width: 95%;
+  max-width: 320px;
+  background-color: #ef5350;
+  border-radius: 0.75rem;
+  box-shadow: 7px 10px 34px 0px rgba(0, 0, 0, 0.1); }
+  .pokemon-card .pokemon-card__image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .pokemon-card .pokemon-card__image-container .pokemon-card__image {
+      max-width: 250px; }
+  .pokemon-card .pokemon-card__stats ul {
+    padding: 0;
+    margin: 0; }
+    .pokemon-card .pokemon-card__stats ul li {
+      list-style: none; }
+  .pokemon-card .pokemon-card__type > *:nth-child(2) {
+    margin-left: 0.5rem; }
+
+@media (min-width: 48rem) {
+  .pokemon-card {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    max-width: 520px;
+    padding: 3rem; } }
+
+.type-normal {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #b7b7a9; }
+
+.type-fire {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #ff6144; }
+
+.type-water {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #52a9ff; }
+
+.type-electric {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #ffd452; }
+
+.type-grass {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #8bd36f; }
+
+.type-ice {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #7dd4ff; }
+
+.type-fighting {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #c56f61; }
+
+.type-poison {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #b76fa9; }
+
+.type-ground {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #e2c56f; }
+
+.type-flying {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #99a8fd; }
+
+.type-psychic {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #ff6fa9; }
+
+.type-bug {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #b7c544; }
+
+.type-rock {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #c5b77d; }
+
+.type-ghost {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #7d7dc5; }
+
+.type-dragon {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #8a7cee; }
+
+.type-dark {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #8c6f61; }
+
+.type-steel {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #b7b7c5; }
+
+.type-fairy {
+  text-transform: uppercase;
+  font-size: var(--fs-200);
+  padding: 0.3rem 0.625rem;
+  border-radius: 0.5rem;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #f1a9f1; }
+
+.btn {
+  background-color: #7b7b7b76;
+  transition: all 300ms ease-in-out;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem; }
+  .btn:hover {
+    background-color: #ef5350; }
+
+.btn-details {
+  border-radius: 0.75rem; }
+  .btn-details:hover {
+    background-color: #1275df70; }
+
 header {
   background-color: #ef5350;
   position: relative; }
@@ -3153,3 +3375,20 @@ header {
       position: relative;
       top: 0;
       left: 0; } }
+
+.main__layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; }
+  .main__layout > :first-child {
+    flex-basis: 30%; }
+
+@media (min-width: 48rem) {
+  .main__layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem; } }
