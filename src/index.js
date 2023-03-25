@@ -11,39 +11,37 @@ const $list = document.querySelector('#list')
 const $listTitle = document.querySelector('#list-title')
 const $pokemonCard = document.querySelector('.pokemon-card')
 
-renderPokemon(1)
-renderPokemonList(`${API_URL}pokemon`)
+renderPokemon()
+renderPokemonList()
 
-function renderPokemonList(URL) {
-  fetchURL(URL)
-    .then(response => {
-      $list.innerHTML = ''
-      $listTitle.textContent = "Pokemon's List"
-      const pokemonList = response.results.filter(pokemon => {
-        return pokemon.url.split('/')[6] < 10000
-      })
+async function renderPokemonList(URL = `${API_URL}pokemon`) {
+  $list.innerHTML = ''
+  $listTitle.textContent = "Pokemon's List"
 
-      pokemonList.forEach(pokemon => {
-        const pokemonNumber = pokemon.url.split('/')[6]
-        let pokemonName = pokemon.name
+  const response = await fetchURL(URL)
+  const pokemonList = await response.results.filter(pokemon => {
+    return pokemon.url.split('/')[6] < 10000
+  })
 
-        pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)
+  pokemonList.forEach(pokemon => {
+    const pokemonNumber = pokemon.url.split('/')[6]
+    let pokemonName = pokemon.name
 
-        $list.innerHTML += `<li class='py-2 list__item'> <span class='fw-bold'>${pokemonNumber} - ${pokemonName}</span><button class='btn btn-details' id='pokemon-${pokemonNumber}'>Details</button></li>`
-      })
+    pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)
 
-      const buttonsDetails = document.querySelectorAll('.btn-details')
-      buttonsDetails.forEach(button => {
-        const pokemonID = button.id.split('-')[1]
+    $list.innerHTML += `<li class='py-2 list__item'> <span class='fw-bold'>${pokemonNumber} - ${pokemonName}</span><button class='btn btn-details' id='pokemon-${pokemonNumber}'>Details</button></li>`
+  })
 
-        button.addEventListener('click', () => {
-          renderPokemon(pokemonID)
-        })
-      })
+  const buttonsDetails = document.querySelectorAll('.btn-details')
+  buttonsDetails.forEach(button => {
+    const pokemonID = button.id.split('-')[1]
 
-      renderPaginationButtons(response.previous, response.next)
+    button.addEventListener('click', () => {
+      renderPokemon(pokemonID)
     })
-    .catch(error => console.log(error))
+  })
+
+  renderPaginationButtons(response.previous, response.next)
 }
 
 function renderPaginationButtons(prev, next) {
@@ -87,12 +85,21 @@ function createPaginationButtons() {
   $list.appendChild(paginationButtons)
 }
 
-function renderPokemon(id) {
-  fetchURL(`${API_URL}pokemon/${id}`).then(response => {
-    const { img, name, id, height, weight, stats, types } =
-      createPokemonFromFetch(response)
+async function renderPokemon(id = 1) {
+  $pokemonCard.innerHTML = ''
 
-    $pokemonCard.innerHTML = `
+  const response = await fetchURL(`${API_URL}pokemon/${id}`)
+  const {
+    img,
+    name,
+    id: pokemonID,
+    height,
+    weight,
+    stats,
+    types,
+  } = createPokemonFromFetch(response)
+
+  $pokemonCard.innerHTML = `
     <div class="pokemon-card__image-container">
     ${
       img
@@ -112,9 +119,9 @@ function renderPokemon(id) {
         </div>
       </div>
       <div>
-        <h2 class="pokemon-card__title">${id} - ${capitalizeFirstLetter(
-      name
-    )}</h2>
+        <h2 class="pokemon-card__title">${pokemonID} - ${capitalizeFirstLetter(
+    name
+  )}</h2>
         <p>Height: ${height}m</p>
         <p>Weight: ${weight}lb</p>
 
@@ -131,7 +138,6 @@ function renderPokemon(id) {
         </div>
 
       </div>`
-  })
 }
 
 function createPokemonFromFetch(response) {
