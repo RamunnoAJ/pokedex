@@ -10,19 +10,33 @@
   .list {
     list-style: none;
     padding: 0;
-
-    .list__item {
-      @include flex(row, space-between, center);
-      border-bottom: 1px solid $grey;
-    }
-
-    .list__item:last-of-type {
-      border-bottom: none;
-    }
   }
 
   .pagination {
     @include flex(row, center, center);
     gap: 0.25rem;
+  }
+}
+
+.list__item {
+  @include flex(row, space-between, center);
+  border-bottom: 1px solid $grey;
+}
+
+.list__item:last-of-type {
+  border-bottom: none;
+}
+
+.list__item-ability {
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+
+  &:hover {
+    background-color: $light-grey;
+  }
+
+  div {
+    @include flex(row, center, center);
+    gap: 1rem;
   }
 }

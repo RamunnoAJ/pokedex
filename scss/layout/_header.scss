@@ -7,7 +7,7 @@ header {
 
     .nav__icons {
       @include flex(row, space-between, center);
-      width: 100%;
+      width: 90%;
 
       .nav__image {
         img {
