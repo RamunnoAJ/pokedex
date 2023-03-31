@@ -21,7 +21,7 @@ const POKEMON = {
 
 const FIRST_POKEMON_FROM_FIRST_PAGE = { name: 'Bulbasaur', id: '001' }
 const FIRST_POKEMON_FROM_SECOND_PAGE = { name: 'Spearow', id: '021' }
-const FIRST_POKEMON_FROM_LAST_PAGE = { id: '100' }
+const FIRST_POKEMON_FROM_LAST_PAGE = { id: '10' }
 
 context('Pokedex app', () => {
   before(() => {
@@ -53,7 +53,7 @@ context('Pokedex app', () => {
       cy.get('@card').find('ul').as('list')
 
       cy.intercept(`${BASE_API_URL}pokemon/1`).as('response')
-      cy.get('#pokemon-1').click()
+      cy.get('[data-pokemon="1"]').click()
 
       cy.wait('@response').then(() => {
         cy.get('@list').should('include.text', `Speed: ${POKEMON.stats.speed}`)
@@ -112,17 +112,17 @@ context('Pokedex app', () => {
     })
 
     it('clicking the >> button should render the last page', () => {
-      cy.intercept(`${BASE_API_URL}pokemon?offset=1000`).as('response')
+      cy.intercept(`${BASE_API_URL}pokemon?offset=1280&limit=20`).as('response')
       cy.get('@btnLast').click()
 
       cy.wait('@response').then(() => {
-        cy.get('#list').find('li').should('have.length.of.at.least', 5)
+        cy.get('#list').find('li').should('have.length.of.at.least', 1)
         cy.get('#list').should('include.text', FIRST_POKEMON_FROM_LAST_PAGE.id)
       })
     })
 
     it('clicking the << button should render the first page', () => {
-      cy.intercept(`${BASE_API_URL}pokemon`).as('response')
+      cy.intercept(`${BASE_API_URL}pokemon?offset=0&limit=20`).as('response')
       cy.get('@btnFirst').click()
 
       cy.wait('@response').then(() => {
@@ -211,7 +211,7 @@ context('Pokedex app', () => {
     })
 
     it('clicking the >> button should render the last page', () => {
-      cy.intercept(`${BASE_API_URL}ability?offset=280`).as('response')
+      cy.intercept(`${BASE_API_URL}ability?offset=280&limit=20`).as('response')
       cy.get('@btnLast').click()
 
       cy.wait('@response').then(() => {
@@ -227,7 +227,7 @@ context('Pokedex app', () => {
     })
 
     it('clicking the << button should render the first page', () => {
-      cy.intercept(`${BASE_API_URL}ability`).as('response')
+      cy.intercept(`${BASE_API_URL}ability?offset=0&limit=20`).as('response')
       cy.get('@btnFirst').click()
 
       cy.wait('@response').then(() => {
@@ -245,7 +245,7 @@ context('Pokedex app', () => {
 
   describe('Navigation tests', () => {
     it('clicking the pokemon link should navigate to pokemon list', () => {
-      cy.intercept(`${BASE_API_URL}pokemon`).as('response')
+      cy.intercept(`${BASE_API_URL}pokemon?offset=0&limit=20`).as('response')
       cy.get('@pokemonNav').click()
 
       cy.wait('@response').then(() => {
@@ -256,7 +256,7 @@ context('Pokedex app', () => {
     })
 
     it('clicking the abilities link should navigate to abilities list', () => {
-      cy.intercept(`${BASE_API_URL}ability`).as('response')
+      cy.intercept(`${BASE_API_URL}ability?offset=0&limit=20`).as('response')
       cy.get('@abilitiesNav').click()
 
       cy.wait('@response').then(() => {
