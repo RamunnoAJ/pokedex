@@ -1,3 +1,3 @@
-import { initializePokemon } from './pokedex.js'
+import { initializePokemon } from './pokemon.js'
 
 initializePokemon()

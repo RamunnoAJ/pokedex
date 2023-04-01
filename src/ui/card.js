@@ -1,4 +1,4 @@
-import { getAbility, getPokemon } from '../API.js'
+import { getAbility, getPokemon } from '../api/pokemon.js'
 import {
   capitalizeFirstLetter,
   roundStringToThreeChars,
