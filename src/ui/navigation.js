@@ -1,4 +1,4 @@
-import { initializeAbilities, initializePokemon } from '../pokedex.js'
+import { initializeAbilities, initializePokemon } from '../pokemon.js'
 
 const $pokemonList = document.querySelector('#pokemon-list')
 const $abilitiesList = document.querySelector('#abilities-list')
