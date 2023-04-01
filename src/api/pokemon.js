@@ -2,7 +2,7 @@ import {
   convertDecimetersToMeters,
   convertHectogramsToPounds,
   fetchURL,
-} from './utils/functions.js'
+} from '../utils/functions.js'
 
 export const API_URL = 'https://pokeapi.co/api/v2/'
 
