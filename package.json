@@ -1,15 +1,20 @@
 {
   "name": "pokedex",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pokedex activity created for argentinaprograma.com Bootcamp",
   "main": "index.js",
   "scripts": {
     "build-css": "node-sass --include-path scss scss/styles.scss css/styles.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "start": "http-server -c-1",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "test:cypress": "run-p start cypress:open"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RamunnoAJ/pokedex.git"
+  },
+  "author": "Agustín Ramunno",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^12.8.1",
@@ -22,6 +27,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "node-sass": "^8.0.0",
     "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.8.6"
   }
 }
