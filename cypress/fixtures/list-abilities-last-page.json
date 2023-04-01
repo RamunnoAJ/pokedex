@@ -1,0 +1,79 @@
+{
+  "count": 358,
+  "next": null,
+  "previous": "https://pokeapi.co/api/v2/ability?offset=320&limit=20",
+  "results": [
+    {
+      "name": "fortune",
+      "url": "https://pokeapi.co/api/v2/ability/10043/"
+    },
+    {
+      "name": "bonanza",
+      "url": "https://pokeapi.co/api/v2/ability/10044/"
+    },
+    {
+      "name": "explode",
+      "url": "https://pokeapi.co/api/v2/ability/10045/"
+    },
+    {
+      "name": "omnipotent",
+      "url": "https://pokeapi.co/api/v2/ability/10046/"
+    },
+    {
+      "name": "share",
+      "url": "https://pokeapi.co/api/v2/ability/10047/"
+    },
+    {
+      "name": "black-hole",
+      "url": "https://pokeapi.co/api/v2/ability/10048/"
+    },
+    {
+      "name": "shadow-dash",
+      "url": "https://pokeapi.co/api/v2/ability/10049/"
+    },
+    {
+      "name": "sprint",
+      "url": "https://pokeapi.co/api/v2/ability/10050/"
+    },
+    {
+      "name": "disgust",
+      "url": "https://pokeapi.co/api/v2/ability/10051/"
+    },
+    {
+      "name": "high-rise",
+      "url": "https://pokeapi.co/api/v2/ability/10052/"
+    },
+    {
+      "name": "climber",
+      "url": "https://pokeapi.co/api/v2/ability/10053/"
+    },
+    {
+      "name": "flame-boost",
+      "url": "https://pokeapi.co/api/v2/ability/10054/"
+    },
+    {
+      "name": "aqua-boost",
+      "url": "https://pokeapi.co/api/v2/ability/10055/"
+    },
+    {
+      "name": "run-up",
+      "url": "https://pokeapi.co/api/v2/ability/10056/"
+    },
+    {
+      "name": "conqueror",
+      "url": "https://pokeapi.co/api/v2/ability/10057/"
+    },
+    {
+      "name": "shackle",
+      "url": "https://pokeapi.co/api/v2/ability/10058/"
+    },
+    {
+      "name": "decoy",
+      "url": "https://pokeapi.co/api/v2/ability/10059/"
+    },
+    {
+      "name": "shield",
+      "url": "https://pokeapi.co/api/v2/ability/10060/"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "count": 1281,
+  "next": null,
+  "previous": "https://pokeapi.co/api/v2/pokemon?offset=1260&limit=20",
+  "results": [
+    {
+      "name": "miraidon-glide-mode",
+      "url": "https://pokeapi.co/api/v2/pokemon/10271/"
+    }
+  ]
+}
