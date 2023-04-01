@@ -1,5 +1,5 @@
-export const URL = 'http://192.168.0.128:8080'
-export const BASE_API_URL = 'https://pokeapi.co/api/v2/'
+const URL = 'http://192.168.0.128:8080'
+const BASE_API_URL = 'https://pokeapi.co/api/v2/'
 const ITEM_PER_PAGE = 20
 
 const POKEMON = {

@@ -4,7 +4,7 @@ import {
   fetchURL,
 } from '../utils/functions.js'
 
-export const API_URL = 'https://pokeapi.co/api/v2/'
+const API_URL = 'https://pokeapi.co/api/v2/'
 
 export async function getPokemon(pokemonID) {
   const response = await fetchURL(`${API_URL}pokemon/${pokemonID}`)
