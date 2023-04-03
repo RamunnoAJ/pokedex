@@ -29,3 +29,27 @@ export function getPokemonList(offset = 0, limit = 20) {
 
   return pokemonList
 }
+
+export function savePokemon(id, pokemon) {
+  if (id === undefined || typeof pokemon !== 'object')
+    throw new Error(
+      'You should pass an id and a pokemon to save on local storage'
+    )
+
+  localStorage.setItem(getPokemonKey(id), JSON.stringify(pokemon))
+}
+
+export function guardarPokemones(offset, limit, pokemonList) {
+  if (
+    offset === undefined ||
+    limit === undefined ||
+    typeof pokemonList !== 'object'
+  ) {
+    throw new Error('You should pass an offset a limit and a list of pokemon')
+  }
+
+  localStorage.setItem(
+    getPokemonListKey(offset, limit),
+    JSON.stringify(pokemonList)
+  )
+}
