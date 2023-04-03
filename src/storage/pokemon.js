@@ -83,8 +83,6 @@ export function getAbilitiesList(offset = 0, limit = 20) {
       `Abilities list with offset ${offset} and limit ${limit} not founded`
     )
 
-  console.log(abilitiesList)
-
   return abilitiesList
 }
 
