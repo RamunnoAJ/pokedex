@@ -99,7 +99,7 @@ export async function getAbilitiesList(offset, limit = 20) {
   }
 }
 
-export async function getAbility(abilityID = 1) {
+export async function getAbility(abilityID) {
   if (abilityID === undefined)
     throw new Error('You should pass an id to get an ability')
 

@@ -1,4 +1,4 @@
-import { getPokemon } from '../pokemon.js'
+import { getAbility, getPokemon } from '../pokemon.js'
 
 describe('getPokemon', () => {
   beforeEach(() => {
@@ -45,6 +45,39 @@ describe('getPokemon', () => {
   test('should throw an error if the input is undefined', () => {
     expect(getPokemon()).rejects.toEqual(
       new Error('You should pass an id to get a pokemon')
+    )
+  })
+})
+
+describe('getAbility', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn()
+  })
+
+  test('should fetch the url passed', async () => {
+    global.fetch.mockImplementationOnce(() => 
+      new Promise(resolve => {
+      const jsonPromise = new Promise(r => {
+        r({
+          abilities: [
+            { ability: { name: 'blabla' } },
+          ],
+        })
+      })
+      resolve({ json: () => jsonPromise })
+      })
+    )
+
+    await getAbility(1)
+    expect(global.fetch).toHaveBeenCalledTimes(1)
+    expect(global.fetch).toHaveBeenCalledWith(
+      'https://pokeapi.co/api/v2/ability/1'
+    )
+  })
+
+  test('should throw an error if the input is undefined', () => {
+    expect(getAbility()).rejects.toEqual(
+      new Error('You should pass an id to get an ability')
     )
   })
 })
