@@ -78,7 +78,6 @@ export async function getAbilitiesList(offset, limit = 20) {
     const response = await fetchURL(
       `${API_URL}ability?offset=${offset}&limit=${limit}`
     )
-    console.log(response)
 
     const { results } = await response
     const abilitiesList = await results.filter(ability => {
