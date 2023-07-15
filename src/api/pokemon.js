@@ -14,7 +14,7 @@ import {
   savePokemonList,
 } from '../storage/pokemon.js'
 
-const API_URL = 'https://pokeapi.co/api/v2/'
+export const API_URL = 'https://pokeapi.co/api/v2/'
 
 export async function getPokemon(pokemonID) {
   if (pokemonID === undefined)
