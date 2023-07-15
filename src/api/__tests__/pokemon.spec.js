@@ -1,4 +1,4 @@
-import { getAbility, getPokemon } from '../pokemon.js'
+import { getAbility, getPokemon, getPokemonList, API_URL } from '../pokemon.js'
 
 describe('getPokemon', () => {
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe('getPokemon', () => {
     await getPokemon(1)
     expect(global.fetch).toHaveBeenCalledTimes(1)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://pokeapi.co/api/v2/pokemon/1'
+      `${API_URL}pokemon/1`
     )
   })
 
@@ -71,13 +71,36 @@ describe('getAbility', () => {
     await getAbility(1)
     expect(global.fetch).toHaveBeenCalledTimes(1)
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://pokeapi.co/api/v2/ability/1'
+      `${API_URL}ability/1`
     )
   })
 
   test('should throw an error if the input is undefined', () => {
     expect(getAbility()).rejects.toEqual(
       new Error('You should pass an id to get an ability')
+    )
+  })
+})
+
+describe('getPokemonList', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn()
+  })  
+
+  test('should fetch the url passed', async () => {
+    global.fetch.mockImplementationOnce(() => 
+      new Promise(resolve => {
+      const jsonPromise = new Promise(r => {
+        r({results: [{url: 'url'}, {url: 'url'}], next: 'https://pokeapi.co/api/v2/pokemon?offset=20&limit=20', previous: 'https://pokeapi.co/api/v2/pokemon?offset=20&limit=20'})
+      })
+      resolve({ json: () => jsonPromise })
+      })
+    )
+
+    await getPokemonList(0, 20)
+    expect(global.fetch).toHaveBeenCalledTimes(1)
+    expect(global.fetch).toHaveBeenCalledWith(
+      `${API_URL}pokemon?offset=0&limit=20`
     )
   })
 })
