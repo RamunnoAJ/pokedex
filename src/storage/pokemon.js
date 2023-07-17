@@ -105,10 +105,13 @@ export function saveAbility(id, ability) {
 export function saveAbilitiesList(offset, limit, abilitiesList) {
   if (
     offset === undefined ||
-    limit === undefined ||
-    typeof abilitiesList !== 'object'
+    limit === undefined 
   ) {
     throw new Error('You should pass an offset a limit and a list of abilities')
+  }
+
+  if(typeof abilitiesList !== 'object') {
+    throw new Error('The parameter abilitiesList should be an object')
   }
 
   localStorage.setItem(

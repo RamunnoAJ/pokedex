@@ -1,4 +1,4 @@
-import { getPokemon, getPokemonList, saveAbility, savePokemon, savePokemonList } from '../pokemon.js'
+import { getPokemon, getPokemonList, saveAbilitiesList, saveAbility, savePokemon, savePokemonList } from '../pokemon.js'
 
 describe('getPokemon', () => {
   beforeEach(() => {
@@ -104,5 +104,28 @@ describe('saveAbility', () => {
   test('should save the ability', () => {
     saveAbility(1, {name: 'Charizard', id: 1})
     expect(localStorage.setItem).toHaveBeenCalledWith('ability_1', JSON.stringify({name: 'Charizard', id: 1}))
+  })
+})
+
+describe('saveAbilitiesList', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    jest.clearAllMocks()
+    localStorage.setItem.mockClear()
+  })
+
+  test('should throw an error if one or both of the inputs are undefined', () => {
+    expect(() => saveAbilitiesList(undefined, 20)).toThrow(new Error('You should pass an offset and a limit'))
+    expect(() => saveAbilitiesList(0, undefined)).toThrow(new Error('You should pass an offset and a limit'))
+    expect(() => saveAbilitiesList()).toThrow(new Error('You should pass an offset and a limit'))
+  })
+
+  test('should throw an error if the parameter abilitiesList is not of type object', () => {
+    expect(() => saveAbilitiesList(0, 20, 1)).toThrow(new Error('The parameter abilitiesList should be an object'))
+  })
+
+  test('should save the abilitiesList', () => {
+    saveAbilitiesList(0, 20, [{name: 'Charizard', id: 1}])
+    expect(localStorage.setItem).toHaveBeenCalledWith('ability_0_20', JSON.stringify([{name: 'Charizard', id: 1}]))
   })
 })
