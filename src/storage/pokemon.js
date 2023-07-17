@@ -50,10 +50,13 @@ export function savePokemon(id, pokemon) {
 export function savePokemonList(offset, limit, pokemonList) {
   if (
     offset === undefined ||
-    limit === undefined ||
-    typeof pokemonList !== 'object'
+    limit === undefined 
   ) {
     throw new Error('You should pass an offset a limit and a list of pokemon')
+  }
+
+  if(typeof pokemonList !== 'object') {
+    throw new Error('The parameter pokemonList should be an object')
   }
 
   localStorage.setItem(
