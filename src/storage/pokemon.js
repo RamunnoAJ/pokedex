@@ -90,10 +90,14 @@ export function getAbilitiesList(offset = 0, limit = 20) {
 }
 
 export function saveAbility(id, ability) {
-  if (id === undefined || typeof ability !== 'object')
+  if (id === undefined)
     throw new Error(
-      'You should pass an id and an ability to save on local storage'
+      'You should pass an id to save on local storage'
     )
+
+  if(typeof ability !== 'object') {
+    throw new Error('The parameter ability should be an object')
+  }
 
   localStorage.setItem(getAbilityKey(id), JSON.stringify(ability))
 }

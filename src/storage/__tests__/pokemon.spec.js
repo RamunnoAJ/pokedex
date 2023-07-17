@@ -1,4 +1,4 @@
-import { getPokemon, getPokemonList, savePokemon, savePokemonList } from '../pokemon.js'
+import { getPokemon, getPokemonList, saveAbility, savePokemon, savePokemonList } from '../pokemon.js'
 
 describe('getPokemon', () => {
   beforeEach(() => {
@@ -83,5 +83,26 @@ describe('savePokemonList', () => {
   test('should save the pokemonList', () => {
     savePokemonList(0, 20, [{name: 'Charizard', id: 1}])
     expect(localStorage.setItem).toHaveBeenCalledWith('pokemon_0_20', JSON.stringify([{name: 'Charizard', id: 1}]))
+  })
+})
+
+describe('saveAbility', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    jest.clearAllMocks()
+    localStorage.setItem.mockClear()
+  })
+
+  test('should throw an error the parameter id is undefined', () => {
+    expect(() => saveAbility(undefined)).toThrow(new Error('You should pass an id to save on local storage'))
+  })
+
+  test('should throw an error if the parameter ability is not an object', () => {
+    expect(() => saveAbility(1, 2)).toThrow(new Error('The parameter ability should be an object'))   
+  })
+
+  test('should save the ability', () => {
+    saveAbility(1, {name: 'Charizard', id: 1})
+    expect(localStorage.setItem).toHaveBeenCalledWith('ability_1', JSON.stringify({name: 'Charizard', id: 1}))
   })
 })
