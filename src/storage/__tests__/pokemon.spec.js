@@ -1,4 +1,4 @@
-import { getAbility, getPokemon, getPokemonList, saveAbilitiesList, saveAbility, savePokemon, savePokemonList } from '../pokemon.js'
+import { getAbilitiesList, getAbility, getPokemon, getPokemonList, saveAbilitiesList, saveAbility, savePokemon, savePokemonList } from '../pokemon.js'
 
 describe('getPokemon', () => {
   beforeEach(() => {
@@ -105,6 +105,29 @@ describe('getAbility', () => {
     localStorage.setItem('ability_1', JSON.stringify({name: 'Stench', id: 1}))
 
     expect(getAbility(1)).toEqual({name: 'Stench', id: 1})
+  })
+})
+
+describe('getAbilitiesList', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    jest.clearAllMocks()
+    localStorage.setItem.mockClear()
+  })
+
+  test('should be called with default parameters if none are passed', () => {
+    localStorage.setItem('ability_0_20', JSON.stringify({name: 'Stench', id: 1}))
+    expect(getAbilitiesList()).toEqual({name: 'Stench', id: 1})
+  })
+
+  test('should throw an error if abilitiesList doesn\'t exist', () => {
+    expect(() => getAbilitiesList(0, 20)).toThrow(new Error(`Abilities list with offset 0 and limit 20 not founded`))
+  })
+
+  test('should return the abilitiesList', () => {
+    localStorage.setItem('ability_0_20', JSON.stringify({name: 'Stench', id: 1}))
+
+    expect(getAbilitiesList(0, 20)).toEqual({name: 'Stench', id: 1})
   })
 })
 
