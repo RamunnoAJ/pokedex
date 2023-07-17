@@ -1,4 +1,4 @@
-import { getPokemon, getPokemonList, saveAbilitiesList, saveAbility, savePokemon, savePokemonList } from '../pokemon.js'
+import { getAbility, getPokemon, getPokemonList, saveAbilitiesList, saveAbility, savePokemon, savePokemonList } from '../pokemon.js'
 
 describe('getPokemon', () => {
   beforeEach(() => {
@@ -83,6 +83,28 @@ describe('savePokemonList', () => {
   test('should save the pokemonList', () => {
     savePokemonList(0, 20, [{name: 'Charizard', id: 1}])
     expect(localStorage.setItem).toHaveBeenCalledWith('pokemon_0_20', JSON.stringify([{name: 'Charizard', id: 1}]))
+  })
+})
+
+describe('getAbility', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    jest.clearAllMocks()
+    localStorage.setItem.mockClear()
+  })
+
+  test('should throw an error if the input is undefined', () => {
+    expect(() => getAbility()).toThrow(new Error('You should pass an id to get the ability'))
+  })
+
+  test('should throw an error if it doesn\'t find the ability', () => {
+    expect(() => getAbility(1)).toThrow(new Error(`Ability with id: 1 not founded`))
+  })
+
+  test('should return the ability', () => {
+    localStorage.setItem('ability_1', JSON.stringify({name: 'Stench', id: 1}))
+
+    expect(getAbility(1)).toEqual({name: 'Stench', id: 1})
   })
 })
 

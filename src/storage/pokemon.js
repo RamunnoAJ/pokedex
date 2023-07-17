@@ -107,7 +107,7 @@ export function saveAbilitiesList(offset, limit, abilitiesList) {
     offset === undefined ||
     limit === undefined 
   ) {
-    throw new Error('You should pass an offset a limit and a list of abilities')
+    throw new Error('You should pass an offset and a limit')
   }
 
   if(typeof abilitiesList !== 'object') {
