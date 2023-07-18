@@ -83,9 +83,27 @@ describe('getAbility', () => {
 })
 
 describe('getPokemonList', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     global.fetch = jest.fn()
-  })  
+  })
+
+  test('should fetch the url passed with the default parameters', async () => {
+    global.fetch.mockImplementationOnce(() => 
+      new Promise(resolve => {
+      const jsonPromise = new Promise(r => {
+        r({results: [{url: 'url'}, {url: 'url'}], next: 'https://pokeapi.co/api/v2/pokemon?offset=20&limit=20', previous: 'https://pokeapi.co/api/v2/pokemon?offset=20&limit=20'})
+      })
+      resolve({ json: () => jsonPromise })
+      })
+    )
+
+    await getPokemonList(0)
+    expect(global.fetch).toHaveBeenCalledTimes(1)
+    expect(global.fetch).toHaveBeenCalledWith(
+      `${API_URL}pokemon?offset=0&limit=20`
+    )
+    expect(await getPokemonList(0)).toEqual({next: "20", pokemonList: [], previous: "20"})
+  })
 
   test('should fetch the url passed', async () => {
     global.fetch.mockImplementationOnce(() => 
