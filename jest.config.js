@@ -1,6 +1,8 @@
 export default {
   verbose: true,
   rootDir: './src',
+  collectCoverage: true,
+  collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}'],
   coverageDirectory: '../coverage/',
   testPathIgnorePatterns: ['./node_modules/', '.*fixture.js'],
   coveragePathIgnorePatterns: ['./node_modules/', '.*fixture.js'],
