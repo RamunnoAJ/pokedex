@@ -6,9 +6,10 @@ import {
 import { renderAbility, renderPokemon } from './card.js'
 import { renderPaginationButtons } from './pagination.js'
 
-const $list = document.querySelector('#list')
-const $listTitle = document.querySelector('#list-title')
 export async function renderPokemonList(offset = 0) {
+  const $list = document.querySelector('#list')
+  const $listTitle = document.querySelector('#list-title')
+  
   $list.innerHTML = ''
   $listTitle.textContent = "Pokemon's List"
 
@@ -51,8 +52,11 @@ function createListPokemon(pokemonNumber, pokemonName, $list) {
 }
 
 export async function renderAbilitiesList(offset = 0) {
+  const $list = document.querySelector('#list')
+  const $listTitle = document.querySelector('#list-title')
+
   $list.innerHTML = ''
-  $listTitle.textContent = "Abilities' list"
+  $listTitle.textContent = "Abilities' List"
 
   const { previous, next, abilitiesList } = await getAbilitiesList(offset)
 

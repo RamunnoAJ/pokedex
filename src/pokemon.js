@@ -2,14 +2,14 @@ import { renderAbility, renderPokemon } from './ui/card.js'
 import { renderAbilitiesList, renderPokemonList } from './ui/list.js'
 import { navigationListeners } from './ui/navigation.js'
 
-export function initializePokemon() {
-  renderPokemon()
-  renderPokemonList()
+export async function initializePokemon() {
+  await renderPokemon()
+  await renderPokemonList()
 }
 
-export function initializeAbilities() {
-  renderAbility()
-  renderAbilitiesList()
+export async function initializeAbilities() {
+  await renderAbility()
+  await renderAbilitiesList()
 }
 
 navigationListeners()

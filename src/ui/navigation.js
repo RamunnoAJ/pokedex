@@ -1,9 +1,9 @@
 import { initializeAbilities, initializePokemon } from '../pokemon.js'
 
-const $pokemonList = document.querySelector('#pokemon-list')
-const $abilitiesList = document.querySelector('#abilities-list')
-
 export function navigationListeners() {
+  const $pokemonList = document.querySelector('#pokemon-list')
+  const $abilitiesList = document.querySelector('#abilities-list')
+
   $pokemonList.addEventListener('click', () => {
     initializePokemon()
   })

@@ -4,10 +4,9 @@ import {
   roundStringToThreeChars,
 } from '../utils/functions.js'
 
-const $abilityCard = document.querySelector('.ability-card')
-const $pokemonCard = document.querySelector('.pokemon-card')
-
 export async function renderPokemon(pokemonID = 1) {
+  const $abilityCard = document.querySelector('.ability-card')
+
   $abilityCard.innerHTML = ''
   const pokemon = await getPokemon(pokemonID)
   showPokemonCard(pokemon)
@@ -24,6 +23,9 @@ export async function renderAbility(abilityID = 1) {
 }
 
 function renderPokemonListForAbility(ability, pokemonList) {
+  const $pokemonCard = document.querySelector('.pokemon-card')
+  const $abilityCard = document.querySelector('.ability-card')
+
   $pokemonCard.innerHTML = `
   <div>
     <h2 class="pokemon-card__title">${ability.id} - ${capitalizeFirstLetter(
@@ -75,6 +77,8 @@ function renderPokemonListForAbility(ability, pokemonList) {
 }
 
 function showPokemonCard({ name, id, img, height, weight, stats, types }) {
+  const $pokemonCard = document.querySelector('.pokemon-card')
+
   $pokemonCard.innerHTML = `
     <div class="pokemon-card__image-container">
     ${
