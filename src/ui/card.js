@@ -31,7 +31,7 @@ function renderPokemonListForAbility(ability, pokemonList) {
     <h2 class="pokemon-card__title">${ability.id} - ${capitalizeFirstLetter(
     ability.name
   )}</h2>
-    <div>
+    <div class="pokemon-card__description">
       ${
         ability.effect_entries.length > 0
           ? ability.effect_entries[1].effect
@@ -56,7 +56,7 @@ function renderPokemonListForAbility(ability, pokemonList) {
 
         return `<li role='button' class='py-1 fw-bold list__item list__item-ability' id='pokemon-${pokemonID}'>
         <div>
-        <img src=${pokemonImage} width='32' />
+        <img id='pokemonImage-${pokemonID}' src=${pokemonImage} width='32' />
         <span>${pokemonName}</span>
         </div>
         <span># ${pokemonNumber}</span>
@@ -101,11 +101,11 @@ function showPokemonCard({ name, id, img, height, weight, stats, types }) {
         <h2 class="pokemon-card__title">${id} - ${capitalizeFirstLetter(
     name
   )}</h2>
-        <p>Height: ${height}m</p>
-        <p>Weight: ${weight}lb</p>
+        <p id='pokemon-height'>Height: ${height}m</p>
+        <p id='pokemon-weight'>Weight: ${weight}lb</p>
         <div class="pokemon-card__stats">
           <h3>Stats</h3>
-          <ul>
+          <ul id='pokemon-stats'>
             <li>Speed: ${stats.speed}</li>
             <li>Health: ${stats.health}</li>
             <li>Attack: ${stats.attack}</li>
