@@ -4,10 +4,9 @@ import {
   roundStringToThreeChars,
 } from '../utils/functions.js'
 
-const $abilityCard = document.querySelector('.ability-card')
-const $pokemonCard = document.querySelector('.pokemon-card')
-
 export async function renderPokemon(pokemonID = 1) {
+  const $abilityCard = document.querySelector('.ability-card')
+
   $abilityCard.innerHTML = ''
   const pokemon = await getPokemon(pokemonID)
   showPokemonCard(pokemon)
@@ -24,13 +23,20 @@ export async function renderAbility(abilityID = 1) {
 }
 
 function renderPokemonListForAbility(ability, pokemonList) {
+  const $pokemonCard = document.querySelector('.pokemon-card')
+  const $abilityCard = document.querySelector('.ability-card')
+
   $pokemonCard.innerHTML = `
   <div>
     <h2 class="pokemon-card__title">${ability.id} - ${capitalizeFirstLetter(
     ability.name
   )}</h2>
-    <div>
-      ${ability.effect_entries[1].effect}
+    <div class="pokemon-card__description">
+      ${
+        ability.effect_entries.length > 0
+          ? ability.effect_entries[1].effect
+          : "This ability doesn't have a description yet"
+      }
     </div>
   </div>
   `
@@ -50,7 +56,7 @@ function renderPokemonListForAbility(ability, pokemonList) {
 
         return `<li role='button' class='py-1 fw-bold list__item list__item-ability' id='pokemon-${pokemonID}'>
         <div>
-        <img src=${pokemonImage} width='32' />
+        <img id='pokemonImage-${pokemonID}' src=${pokemonImage} width='32' />
         <span>${pokemonName}</span>
         </div>
         <span># ${pokemonNumber}</span>
@@ -71,6 +77,8 @@ function renderPokemonListForAbility(ability, pokemonList) {
 }
 
 function showPokemonCard({ name, id, img, height, weight, stats, types }) {
+  const $pokemonCard = document.querySelector('.pokemon-card')
+
   $pokemonCard.innerHTML = `
     <div class="pokemon-card__image-container">
     ${
@@ -93,11 +101,11 @@ function showPokemonCard({ name, id, img, height, weight, stats, types }) {
         <h2 class="pokemon-card__title">${id} - ${capitalizeFirstLetter(
     name
   )}</h2>
-        <p>Height: ${height}m</p>
-        <p>Weight: ${weight}lb</p>
+        <p id='pokemon-height'>Height: ${height}m</p>
+        <p id='pokemon-weight'>Weight: ${weight}lb</p>
         <div class="pokemon-card__stats">
           <h3>Stats</h3>
-          <ul>
+          <ul id='pokemon-stats'>
             <li>Speed: ${stats.speed}</li>
             <li>Health: ${stats.health}</li>
             <li>Attack: ${stats.attack}</li>
