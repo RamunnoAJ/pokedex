@@ -10,6 +10,7 @@ import {
   savePokemonList,
 } from '../storage/pokemon.js'
 import { Pokemon } from '../entities/pokemon.js'
+import { Ability } from '../entities/abilities.js'
 
 export const API_URL = 'https://pokeapi.co/api/v2/'
 
@@ -93,7 +94,12 @@ export async function getAbility(abilityID) {
   try {
     return getAbilityFromLS(abilityID)
   } catch (e) {
-    const ability = await fetchURL(`${API_URL}ability/${abilityID}`)
+    const { id, name, effect_entries, pokemon } = await fetchURL(
+      `${API_URL}ability/${abilityID}`
+    )
+    const ability = new Ability(id, name, effect_entries, pokemon)
+    ability.effect_entries = ability.getDescription()
+
     saveAbility(abilityID, ability)
     return ability
   }

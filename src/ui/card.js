@@ -32,11 +32,7 @@ function renderPokemonListForAbility(ability, pokemonList) {
     ability.name
   )}</h2>
     <div class="pokemon-card__description">
-      ${
-        ability.effect_entries.length > 0
-          ? ability.effect_entries[1].effect
-          : "This ability doesn't have a description yet"
-      }
+      ${ability.effect_entries}
     </div>
   </div>
   `
