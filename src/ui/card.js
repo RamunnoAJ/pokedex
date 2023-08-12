@@ -76,14 +76,14 @@ function renderPokemonListForAbility(ability, pokemonList) {
   })
 }
 
-function showPokemonCard({ name, id, img, height, weight, stats, types }) {
+function showPokemonCard({ name, id, image, height, weight, stats, types }) {
   const $pokemonCard = document.querySelector('.pokemon-card')
 
   $pokemonCard.innerHTML = `
     <div class="pokemon-card__image-container">
     ${
-      img
-        ? `<img src="${img}"
+      image
+        ? `<img src="${image}"
           alt="${name}" class="pokemon-card__image">`
         : `<img src="../assets/loading-gif.gif"
         alt="${name}" class="pokemon-card__image">
