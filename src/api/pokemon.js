@@ -1,8 +1,4 @@
-import {
-  convertDecimetersToMeters,
-  convertHectogramsToPounds,
-  fetchURL,
-} from '../utils/functions.js'
+import { fetchURL } from '../utils/functions.js'
 import {
   getPokemon as getPokemonFromLS,
   getPokemonList as getPokemonListFromLS,
@@ -13,6 +9,7 @@ import {
   saveAbilitiesList,
   savePokemonList,
 } from '../storage/pokemon.js'
+import { Pokemon } from '../entities/pokemon.js'
 
 export const API_URL = 'https://pokeapi.co/api/v2/'
 
@@ -23,23 +20,14 @@ export async function getPokemon(pokemonID) {
   try {
     return getPokemonFromLS(pokemonID)
   } catch (e) {
-    const response = await fetchURL(`${API_URL}pokemon/${pokemonID}`)
-    const pokemon = {
-      name: response.name,
-      id: response.id,
-      height: convertDecimetersToMeters(response.height).toFixed(2),
-      weight: convertHectogramsToPounds(response.weight).toFixed(2),
-      stats: {
-        speed: response.stats[5].base_stat,
-        health: response.stats[0].base_stat,
-        attack: response.stats[1].base_stat,
-        defense: response.stats[2].base_stat,
-        spAttack: response.stats[3].base_stat,
-        spDefense: response.stats[4].base_stat,
-      },
-      img: response.sprites.other['official-artwork'].front_default,
-      types: response.types,
-    }
+    const { name, id, height, weight, stats, sprites, types } = await fetchURL(
+      `${API_URL}pokemon/${pokemonID}`
+    )
+    const pokemon = new Pokemon(id, name, types, stats, sprites, height, weight)
+    pokemon.height = pokemon.getHeight()
+    pokemon.weight = pokemon.getWeight()
+    pokemon.stats = pokemon.getStats()
+    pokemon.image = pokemon.getImage()
 
     savePokemon(pokemonID, pokemon)
     return pokemon
