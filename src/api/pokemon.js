@@ -9,8 +9,8 @@ import {
   saveAbilitiesList,
   savePokemonList,
 } from '../storage/pokemon.js'
-import { Pokemon } from '../entities/pokemon.js'
-import { Ability } from '../entities/abilities.js'
+import { pokemonMapper } from '../mappers/pokemon.js'
+import { abilityMapper } from '../mappers/abilities.js'
 
 export const API_URL = 'https://pokeapi.co/api/v2/'
 
@@ -21,10 +21,8 @@ export async function getPokemon(pokemonID) {
   try {
     return getPokemonFromLS(pokemonID)
   } catch (e) {
-    const { name, id, height, weight, stats, sprites, types } = await fetchURL(
-      `${API_URL}pokemon/${pokemonID}`
-    )
-    const pokemon = new Pokemon(id, name, types, stats, sprites, height, weight)
+    const pokemonApi = await fetchURL(`${API_URL}pokemon/${pokemonID}`)
+    const pokemon = pokemonMapper(pokemonApi)
     pokemon.height = pokemon.getHeight()
     pokemon.weight = pokemon.getWeight()
     pokemon.stats = pokemon.getStats()
@@ -94,10 +92,8 @@ export async function getAbility(abilityID) {
   try {
     return getAbilityFromLS(abilityID)
   } catch (e) {
-    const { id, name, effect_entries, pokemon } = await fetchURL(
-      `${API_URL}ability/${abilityID}`
-    )
-    const ability = new Ability(id, name, effect_entries, pokemon)
+    const abilityApi = await fetchURL(`${API_URL}ability/${abilityID}`)
+    const ability = abilityMapper(abilityApi)
     ability.effect_entries = ability.getDescription()
 
     saveAbility(abilityID, ability)

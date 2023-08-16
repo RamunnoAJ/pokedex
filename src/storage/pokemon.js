@@ -1,3 +1,8 @@
+/*
+ * @typeof {import('../entities/abilities.js').Ability} Ability
+ * @typeof {import('../entities/pokemon.js').Pokemon} Pokemon
+ * */
+
 function getPokemonListKey(offset, limit) {
   return `pokemon_${offset}_${limit}`
 }
@@ -14,6 +19,10 @@ function getAbilitiesListKey(offset, limit) {
   return `ability_${offset}_${limit}`
 }
 
+/*
+ * @param {Number} id
+ * @return {Pokemon}
+ * */
 export function getPokemon(id) {
   if (id === undefined)
     throw new Error('You should pass an id to get the pokemon')
@@ -25,6 +34,11 @@ export function getPokemon(id) {
   return pokemon
 }
 
+/*
+ * @param {Number} offset
+ * @param {Number} limit
+ * @return {Array<Pokemon>}
+ * */
 export function getPokemonList(offset = 0, limit = 20) {
   const pokemonList = JSON.parse(
     localStorage.getItem(getPokemonListKey(offset, limit))
@@ -38,6 +52,10 @@ export function getPokemonList(offset = 0, limit = 20) {
   return pokemonList
 }
 
+/*
+ * @param {Number} id
+ * @param {Pokemon} pokemon
+ * */
 export function savePokemon(id, pokemon) {
   if (id === undefined || typeof pokemon !== 'object')
     throw new Error(
@@ -47,15 +65,17 @@ export function savePokemon(id, pokemon) {
   localStorage.setItem(getPokemonKey(id), JSON.stringify(pokemon))
 }
 
+/*
+ * @param {Number} offset
+ * @param {Number} limit
+ * @param {Array<Pokemon>} pokemonList
+ * */
 export function savePokemonList(offset, limit, pokemonList) {
-  if (
-    offset === undefined ||
-    limit === undefined 
-  ) {
+  if (offset === undefined || limit === undefined) {
     throw new Error('You should pass an offset a limit and a list of pokemon')
   }
 
-  if(typeof pokemonList !== 'object') {
+  if (typeof pokemonList !== 'object') {
     throw new Error('The parameter pokemonList should be an object')
   }
 
@@ -65,6 +85,10 @@ export function savePokemonList(offset, limit, pokemonList) {
   )
 }
 
+/*
+ * @param {Number} id
+ * @return {Ability}
+ * */
 export function getAbility(id) {
   if (id === undefined)
     throw new Error('You should pass an id to get the ability')
@@ -76,6 +100,11 @@ export function getAbility(id) {
   return ability
 }
 
+/*
+ * @param {Number} offset
+ * @param {Number} limit
+ * @return {Array<Ability>}
+ * */
 export function getAbilitiesList(offset = 0, limit = 20) {
   const abilitiesList = JSON.parse(
     localStorage.getItem(getAbilitiesListKey(offset, limit))
@@ -89,28 +118,32 @@ export function getAbilitiesList(offset = 0, limit = 20) {
   return abilitiesList
 }
 
+/*
+ * @param {Number} id
+ * @param {Ability} ability
+ * */
 export function saveAbility(id, ability) {
   if (id === undefined)
-    throw new Error(
-      'You should pass an id to save on local storage'
-    )
+    throw new Error('You should pass an id to save on local storage')
 
-  if(typeof ability !== 'object') {
+  if (typeof ability !== 'object') {
     throw new Error('The parameter ability should be an object')
   }
 
   localStorage.setItem(getAbilityKey(id), JSON.stringify(ability))
 }
 
+/*
+ * @param {Number} offset
+ * @param {Number} limit
+ * @param {Array<Ability>} abilitiesList
+ */
 export function saveAbilitiesList(offset, limit, abilitiesList) {
-  if (
-    offset === undefined ||
-    limit === undefined 
-  ) {
+  if (offset === undefined || limit === undefined) {
     throw new Error('You should pass an offset and a limit')
   }
 
-  if(typeof abilitiesList !== 'object') {
+  if (typeof abilitiesList !== 'object') {
     throw new Error('The parameter abilitiesList should be an object')
   }
 

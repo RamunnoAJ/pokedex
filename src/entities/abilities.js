@@ -1,4 +1,10 @@
 export class Ability {
+  /*
+   * @param {Number} id
+   * @param {String} name
+   * @param {Array} effectEntries
+   * @param {Object} pokemon
+   * */
   constructor(id, name, effectEntries, pokemon) {
     this.id = id
     this.name = name

@@ -4,6 +4,15 @@ import {
 } from '../utils/functions.js'
 
 export class Pokemon {
+  /*
+   * @param {Number} id
+   * @param {String} name
+   * @param {Array} types
+   * @param {Array} stats
+   * @param {String} image
+   * @param {Number} height
+   * @param {Number} weight
+   * */
   constructor(id, name, types, stats, image, height, weight) {
     this.id = id
     this.name = name
