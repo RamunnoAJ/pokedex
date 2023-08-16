@@ -1,3 +1,7 @@
+/*
+ * @typeof {import('../entities/pokemmon.js').Pokemon} Pokemon
+ * @typeof {import('../entities/ability.js').Ability} Ability
+ * */
 import { fetchURL } from '../utils/functions.js'
 import {
   getPokemon as getPokemonFromLS,
@@ -14,6 +18,10 @@ import { abilityMapper } from '../mappers/abilities.js'
 
 export const API_URL = 'https://pokeapi.co/api/v2/'
 
+/*
+ * @param {String} pokemonID
+ * @return {Pokemon}
+ * */
 export async function getPokemon(pokemonID) {
   if (pokemonID === undefined)
     throw new Error('You should pass an id to get a pokemon')
@@ -33,6 +41,11 @@ export async function getPokemon(pokemonID) {
   }
 }
 
+/*
+ * @param {Number} offset
+ * @param {Number} limit
+ * @return {Object}
+ * */
 export async function getPokemonList(offset, limit = 20) {
   try {
     return getPokemonListFromLS(offset, limit)
@@ -58,6 +71,11 @@ export async function getPokemonList(offset, limit = 20) {
   }
 }
 
+/*
+ * @param {Number} offset
+ * @param {Number} limit
+ * @return {Object}
+ */
 export async function getAbilitiesList(offset, limit = 20) {
   try {
     return getAbilitiesListFromLS(offset, limit)
@@ -85,6 +103,10 @@ export async function getAbilitiesList(offset, limit = 20) {
   }
 }
 
+/*
+ * @param {String} abilityID
+ * @return {Ability}
+ */
 export async function getAbility(abilityID) {
   if (abilityID === undefined)
     throw new Error('You should pass an id to get an ability')
