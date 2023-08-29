@@ -32,7 +32,7 @@ export class Pokemon {
   }
 
   getImage() {
-    return this.image.other['official-artwork'].front_default
+    return this.image?.other['official-artwork'].front_default || null
   }
 
   getStats() {
