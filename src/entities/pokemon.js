@@ -9,7 +9,7 @@ export class Pokemon {
    * @param {String} name
    * @param {Array} types
    * @param {Array} stats
-   * @param {String} image
+   * @param {Array} image
    * @param {Number} height
    * @param {Number} weight
    * */
