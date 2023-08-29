@@ -5,7 +5,7 @@ import { Pokemon } from '../entities/pokemon.js'
  * @returns {Pokemon}
  * */
 export function pokemonMapper(apiData) {
-  const { id, name, types, stats, image, height, weight } = apiData
+  const { id, name, types, stats, sprites, height, weight } = apiData
 
-  return new Pokemon(id, name, types, stats, image, height, weight)
+  return new Pokemon(id, name, types, stats, sprites, height, weight)
 }
