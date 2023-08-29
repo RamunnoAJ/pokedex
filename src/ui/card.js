@@ -81,7 +81,7 @@ function showPokemonCard({ name, id, image, height, weight, stats, types }) {
       image
         ? `<img src="${image}"
           alt="${name}" class="pokemon-card__image">`
-        : `<img src="../assets/loading-gif.gif"
+        : `<img src="./assets/loading-gif.gif"
         alt="${name}" class="pokemon-card__image">
         <span>There is no image for this pokemon</span>`
     }
