@@ -36,4 +36,15 @@ This project was developed with the following technologies:
   $ npm run start
 ```
 
+## 🩹 Running tests
+``` bash 
+  # End-to-End testing
+  $ npm run test:cypress
+
+  # Unit testing
+  $ npm run test:dev
+```
+
+
+
 Made with ❤️ by Agustín Ramunno 👋🏻 [Get in touch!](https://github.com/RamunnoAJ)
